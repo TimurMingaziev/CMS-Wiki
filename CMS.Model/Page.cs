@@ -11,11 +11,11 @@ namespace CMS.Model
         public int PageId { get; set; }
         public string NamePage { get; set; }
         public string ContentPage { get; set; }
-        public DateTime DateCreatePage { get; set; }
-        public DateTime DateChangePage { get; set; }
+        public DateTime? DateCreatePage { get; set; }
+        public DateTime? DateChangePage { get; set; }
         public string OwnerPage { get; set; }
         public string ChangerPage { get; set; }
-        public Section Section { get; set; }
+      //  public Section Section { get; set; }
 
 
         public virtual List<Page> pagesThis { get; set; }
