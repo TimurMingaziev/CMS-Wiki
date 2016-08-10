@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CMS.Model
 {
-    class Comment
+    public class Comment
     {
-        private string contentComment { get; set; }
-        private string ownerComment { get; set; }
+        public string contentComment { get; set; }
+        public string ownerComment { get; set; }
     }
 }

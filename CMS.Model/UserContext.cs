@@ -7,13 +7,15 @@ using System.Data.Entity;
 
 namespace CMS.Model
 {
-    class UserContext:DbContext
+    public class UserContext:DbContext
     {
         public UserContext()
             :base("DbConnection")
         { }
         public DbSet<Section> Section { get; set; }
         public DbSet<Page> Page { get; set; }
+        public DbSet<Mark> Mark { get; set; }
+        public DbSet<Comment> Comment { get; set; }
 
     }
 }

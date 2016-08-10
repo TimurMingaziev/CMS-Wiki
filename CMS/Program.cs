@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CMS.Model;
 
 namespace CMS
 {
@@ -10,6 +11,27 @@ namespace CMS
     {
         static void Main(string[] args)
         {
+            using (UserContext db = new UserContext())
+            {
+                // создаем два объекта User
+                Comment user1 = new Comment { contentComment= "Hellow world"};
+                Comment user2 = new Comment { ownerComment = "Sam"};
+
+                // добавляем их в бд
+                db.Comment.Add(user1);
+                db.Comment.Add(user2);
+                db.SaveChanges();
+                Console.WriteLine("Объекты успешно сохранены");
+
+                // получаем объекты из бд и выводим на консоль
+                var comment = db.Comment;
+                Console.WriteLine("Список объектов:");
+                foreach (Comment u in comment)
+                {
+                    Console.WriteLine("{0}.{1} - {2}", u.ownerComment, u.contentComment);
+                }
+            }
+            Console.Read();
         }
     }
 }

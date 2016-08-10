@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CMS.Model
 {
-    class Page
+    public class Page
     {
         private string namePage { get; set; }
         private string contentPage { get; set; }

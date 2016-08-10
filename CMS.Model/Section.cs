@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace CMS.Model
 {
-    class Section
+    public class Section
     {
         private string nameSection { get; set; }
         private string decriptionSection { get; set; }

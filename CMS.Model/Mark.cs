@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CMS.Model
 {
-    class Mark
+    public class Mark
     {
         private short mark { get; set; }
         private string ownerMark { get; set; }
