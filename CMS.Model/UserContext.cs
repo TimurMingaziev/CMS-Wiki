@@ -7,10 +7,11 @@ using System.Data.Entity;
 
 namespace CMS.Model
 {
+   
     public class UserContext:DbContext
     {
         public UserContext()
-            :base("DbConnection")
+            :base("UserContext")
         { }
         public DbSet<Section> Section { get; set; }
         public DbSet<Page> Page { get; set; }

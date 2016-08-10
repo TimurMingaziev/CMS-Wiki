@@ -8,16 +8,19 @@ namespace CMS.Model
 {
     public class Page
     {
-        private string namePage { get; set; }
-        private string contentPage { get; set; }
-        private DateTime dateCreatePage { get; set; }
-        private DateTime dateChangePage { get; set; }
-        private string ownerPage { get; set; }
-        private string changerPage { get; set; }
+        public int PageId { get; set; }
+        public string NamePage { get; set; }
+        public string ContentPage { get; set; }
+        public DateTime DateCreatePage { get; set; }
+        public DateTime DateChangePage { get; set; }
+        public string OwnerPage { get; set; }
+        public string ChangerPage { get; set; }
+        public Section Section { get; set; }
 
-        List<Page> pagesThis { get; set; }
-        List<Comment> comments { get; set;}
-        List<Mark> marks { get; set; }
+
+        public virtual List<Page> pagesThis { get; set; }
+        public virtual List<Comment> Comments { get; set;}
+        public virtual List<Mark> Marks { get; set; }
 
     }
 }

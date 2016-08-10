@@ -8,7 +8,11 @@ namespace CMS.Model
 {
     public class Comment
     {
-        public string contentComment { get; set; }
-        public string ownerComment { get; set; }
+        public int CommentId { get; set; }
+        public string ContentComment { get; set; }
+        public string OwnerComment { get; set; }
+
+        public virtual Page Page { get; set; }
+
     }
 }

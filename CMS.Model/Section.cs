@@ -9,10 +9,10 @@ namespace CMS.Model
 {
     public class Section
     {
-        private string nameSection { get; set; }
-        private string decriptionSection { get; set; }
-        private string ownerSection { get; set; }
-        private List<Page> pagesOfSection { get; set; }
-
+        public int SectionId { get; set; }
+        public string NameSection { get; set; }
+        public string DecriptionSection { get; set; }
+        public string OwnerSection { get; set; }
+        public virtual List<Page> PagesOfSection { get; set; }
     }
 }

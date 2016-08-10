@@ -8,9 +8,11 @@ namespace CMS.Model
 {
     public class Mark
     {
-        private short mark { get; set; }
-        private string ownerMark { get; set; }
-        private DateTime dateMark { get; set; }
+        public int MarkId { get; set; }
+        public short MarkThis { get; set; }
+        public string OwnerMark { get; set; }
+        public DateTime DateMark { get; set; }
 
+        public virtual Page Page { get; set; }
     }
 }

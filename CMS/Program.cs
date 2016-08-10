@@ -14,8 +14,8 @@ namespace CMS
             using (UserContext db = new UserContext())
             {
                 // создаем два объекта User
-                Comment user1 = new Comment { contentComment= "Hellow world"};
-                Comment user2 = new Comment { ownerComment = "Sam"};
+                Comment user1 = new Comment { ContentComment= "Hellow world"};
+                Comment user2 = new Comment { OwnerComment = "Sam"};
 
                 // добавляем их в бд
                 db.Comment.Add(user1);
@@ -28,7 +28,7 @@ namespace CMS
                 Console.WriteLine("Список объектов:");
                 foreach (Comment u in comment)
                 {
-                    Console.WriteLine("{0}.{1} - {2}", u.ownerComment, u.contentComment);
+                    Console.WriteLine("{0} - {1}", u.OwnerComment, u.ContentComment);
                 }
             }
             Console.Read();
