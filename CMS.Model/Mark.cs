@@ -8,6 +8,15 @@ namespace CMS.Model
 {
     public class Mark
     {
+        public Mark() { }
+        public Mark(int markid, short mark, string owner, DateTime date)
+        {
+            MarkId = markid;
+            MarkThis = mark;
+            OwnerMark = owner;
+            DateMark = date;
+        }
+
         public int MarkId { get; set; }
         public short MarkThis { get; set; }
         public string OwnerMark { get; set; }

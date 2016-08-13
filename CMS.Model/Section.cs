@@ -9,6 +9,15 @@ namespace CMS.Model
 {
     public class Section
     {
+        public Section() { }
+        public Section(int id, string name, string decr, string owner)
+        {
+            SectionId = id;
+            NameSection = name;
+            DecriptionSection = decr;
+            OwnerSection = owner;
+        }
+
         public int SectionId { get; set; }
         public string NameSection { get; set; }
         public string DecriptionSection { get; set; }
