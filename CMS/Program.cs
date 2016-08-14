@@ -23,20 +23,23 @@ namespace CMS
             using (UserContext context = new UserContext())
             {
 
-                Section user1 = new Section { NameSection = "login1", DecriptionSection = "pass1234", OwnerSection = "1" };
-                Section user2 = new Section { NameSection = "login2", DecriptionSection = "5678word2", OwnerSection = "2" };
-                context.Section.AddRange(new List<Section> { user1, user2 });
+                Section user1 = new Section() { NameSection = "login1", DecriptionSection = "pass1234", OwnerSection = "1" };
+                Section user2 = new Section () { NameSection = "login2", DecriptionSection = "5678word2", OwnerSection = "2" };
+               // context.Section.AddRange(new List<Section> { user1, user2 });
+                context.Section.Add(user1);
+                context.Section.Add(user2);
+
                 context.SaveChanges();
 
-                Page page = new Page { NamePage = "Main", ContentPage = "Hello world", OwnerPage = "1", ChangerPage = "2", DateChangePage = DateTime.Now, DateCreatePage = DateTime.Now, Section = user1 };
+                Page page = new Page() { NamePage = "Main", ContentPage = "Hello world", OwnerPage = "1", ChangerPage = "2", DateChangePage = DateTime.Now, DateCreatePage = DateTime.Now, Section = user1 };
                 context.Page.Add(page);
                 context.SaveChanges();
 
-                Comment comment = new Comment { ContentComment = "lol", OwnerComment = "1", Page = page };
+                Comment comment = new Comment() { ContentComment = "lol", OwnerComment = "1", Page = page };
                 context.Comment.Add(comment);
                 context.SaveChanges();
 
-                Mark mark = new Mark { MarkThis = 1, OwnerMark = "1", DateMark = DateTime.Now, Page = page };
+                Mark mark = new Mark (){ MarkThis = 1, OwnerMark = "1", DateMark = DateTime.Now, Page = page };
                 context.Mark.Add(mark);
                 context.SaveChanges();
 
