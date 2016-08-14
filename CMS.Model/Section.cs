@@ -9,7 +9,9 @@ namespace CMS.Model
 {
     public class Section
     {
-        public Section() { }
+        public Section() {
+            PagesOfSection = new List<Page>();
+        }
         public Section(int id, string name, string decr, string owner)
         {
             SectionId = id;
@@ -22,6 +24,6 @@ namespace CMS.Model
         public string NameSection { get; set; }
         public string DecriptionSection { get; set; }
         public string OwnerSection { get; set; }
-        public virtual List<Page> PagesOfSection { get; set; }
+        public virtual ICollection<Page> PagesOfSection { get; set; }
     }
 }

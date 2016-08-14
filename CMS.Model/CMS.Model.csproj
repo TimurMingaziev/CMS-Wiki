@@ -60,6 +60,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="IUse.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Mark.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="Section.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
