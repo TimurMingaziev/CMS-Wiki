@@ -9,7 +9,7 @@ using CMS.App;
 namespace CMS.Inf
 {
     public abstract class Repository<T> : IRepository<T> where T : class
-    { 
+    {
 
         public void Create(T item)
         {
@@ -28,10 +28,12 @@ namespace CMS.Inf
 
         public IEnumerable<T> GetAll()
         {
+           
             using (var context = new UserContext())
             {
                 return context.Set<T>().ToList();
-            }
+                
+           }
         }
 
         public T GetById(int id)
@@ -41,7 +43,7 @@ namespace CMS.Inf
 
         public void Save()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Update(T item)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CMS.Data
 {
-    public class PageDTO
+    public class PageDto
     {
         public int PageId { get; set; }
         public string NamePage { get; set; }
@@ -15,11 +15,7 @@ namespace CMS.Data
         public DateTime DateChangePage { get; set; }
         public string OwnerPage { get; set; }
         public string ChangerPage { get; set; }
-       // public Section Section { get; set; }
+        public  int SectionId { get; set; }
 
-
-      //  public virtual List<Page> pagesThis { get; set; }
-     //   public virtual List<Comment> Comments { get; set; }
-      //  public virtual List<Mark> Marks { get; set; }
     }
 }

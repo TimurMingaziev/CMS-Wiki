@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CMS.Model
 {
-    interface IUse
+    public interface IUse
     {
         //        1.
         //Созадние раздела
@@ -21,6 +21,13 @@ namespace CMS.Model
 
         void CreateSection(string name, string descr, string owner);
         void CreateSection(string name,string owner);
+
+        void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner,
+            string changer, Section section);
+
+        void UpdatePage(Page page);
+        void CreateComment(string content, string owner);
+        void CreateMark(short mark, string owner, DateTime date);
 
     }
 }
