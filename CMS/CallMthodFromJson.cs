@@ -22,11 +22,19 @@ namespace CMS
             Console.WriteLine(JsonStr);
             JObject jObject = Newtonsoft.Json.Linq.JObject.Parse(JsonStr);
             var token = jObject["methodName"].ToString();
+            JToken[] token2 = jObject["params"].ToArray();
+
             Console.WriteLine(token);
+
 
             Assembly a = Assembly.LoadFrom("CMS.App.dll"); // dll - "ClassLibrary3"
             Type t = a.GetType("CMS.App.Use"); // namespace - "MyPlayers" , class - "Player"
             Object instance = Activator.CreateInstance(t);
+            MethodInfo m1 = t.GetMethod(token); // method
+
+            m1.Invoke(instance, new object[] {token2});
+            // m1.Invoke(instance, token2);
+
             MethodInfo[] m = t.GetMethods(); // method
             foreach (MethodInfo method in m)
             {
@@ -46,9 +54,7 @@ namespace CMS
                 Console.WriteLine(")");
             }
 
-            //MethodInfo m1 = t.GetMethod("CreatePage"); // method
-            //m1.Invoke(instance, new object[] { "hi", "myFriend", DateTime.Now, DateTime.Now, "me", "you",
-            //    new SectionRepository().GetSectionById(1) });
+            
 
         }
     }
