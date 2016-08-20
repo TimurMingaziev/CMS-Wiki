@@ -17,7 +17,7 @@ namespace CMS.Inf
         }
 
 
-        public IModel Connect(string host, IModel channel)
+        public IModel Connect(string host)
         {
             throw new NotImplementedException();
         }

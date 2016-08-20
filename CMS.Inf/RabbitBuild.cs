@@ -16,12 +16,10 @@ namespace CMS.Inf
         private string _queueName;
         private EventingBasicConsumer _eventingBasicConsumer;
         private RabbitMqPublisher _rabbitMqSender;
-
-        public RabbitBuild() { }
-        public RabbitBuild(IModel chanel, string queueName, object serviceObject, RabbitMqPublisher sender)
+        
+        public RabbitBuild(IModel chanel, string queueName, RabbitMqPublisher sender)
         {
             _rabbitMqSender = sender;
-            _serviceObject = serviceObject;
             _queueName = queueName;
             _channel = chanel;
             _channel.QueueDeclare(_queueName, false, false, false, null);

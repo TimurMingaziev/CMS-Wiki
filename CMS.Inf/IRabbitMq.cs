@@ -12,7 +12,7 @@ namespace CMS.Inf
     interface IRabbitMq
     {
 
-        IModel Connect(string host, IModel channel);
+        IModel Connect(string host);
         void Send(string exchangeName, string routingKey, string message);
 
     }

@@ -15,7 +15,7 @@ namespace CMS.Inf
 
         public RabbitConnector() { }
 
-        public IModel Connect(string host, IModel channel)
+        public IModel Connect(string host)
         {
             _host = host;
             var factory = new ConnectionFactory

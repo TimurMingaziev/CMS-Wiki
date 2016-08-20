@@ -24,8 +24,10 @@ namespace CMS
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserContext, Configuration>());
             logger.Log(LogLevel.Info, "Application started");
 
-            
-      
+            IModel rabbitInit = new RabbitConnector().Connect("localhost");
+
+            var foo = new RabbitBuild(rabbitInit, "five", new RabbitMqPublisher(rabbitInit));
+
 
             //var use = new Use();
             //use.CreatePage("hi", "myFriend", DateTime.Now, DateTime.Now, "me", "you",
@@ -39,7 +41,7 @@ namespace CMS
             //logger.Log(LogLevel.Info, "Repository Page get by id: {0}",
             //    new PageRepository().GetPageById(1).DateChangePage);
 
-            new CallMthodFromJson().CallMethod("2");
+           // new CallMthodFromJson().CallMethod("2");
             Console.WriteLine("успех");
             Console.ReadLine();
         }
