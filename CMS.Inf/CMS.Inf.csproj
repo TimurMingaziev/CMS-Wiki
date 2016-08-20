@@ -34,14 +34,11 @@
       <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CMS.App">
-      <HintPath>..\CMS.App\bin\Debug\CMS.App.dll</HintPath>
-    </Reference>
     <Reference Include="CMS.Data">
-      <HintPath>..\CMS.Data\bin\Debug\CMS.Data.dll</HintPath>
+      <HintPath>..\CMS.Data\obj\Debug\CMS.Data.dll</HintPath>
     </Reference>
     <Reference Include="CMS.Model">
-      <HintPath>..\CMS.Model\bin\Debug\CMS.Model.dll</HintPath>
+      <HintPath>..\CMS.Model\obj\Debug\CMS.Model.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -67,6 +64,10 @@
       <HintPath>..\packages\NLog.4.3.7\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.4.0.0\lib\net451\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -79,8 +80,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IRabbitMq.cs" />
     <Compile Include="PageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RabbitBuild.cs" />
+    <Compile Include="RabbitConnector.cs" />
+    <Compile Include="RabbitMqPublisher.cs" />
+    <Compile Include="RabbitMqReceiver.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="SectionRepository.cs" />
   </ItemGroup>

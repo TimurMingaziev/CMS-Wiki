@@ -9,6 +9,7 @@ using CMS.Inf;
 using CMS.Model;
 using MySql.Data.MySqlClient;
 using NLog;
+using RabbitMQ.Client;
 
 //using CMS.Model.Migrations;
 
@@ -23,7 +24,9 @@ namespace CMS
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserContext, Configuration>());
             logger.Log(LogLevel.Info, "Application started");
 
+            
       
+
             //var use = new Use();
             //use.CreatePage("hi", "myFriend", DateTime.Now, DateTime.Now, "me", "you",
             //    new SectionRepository().GetSectionById(1));

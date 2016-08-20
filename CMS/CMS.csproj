@@ -49,10 +49,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CMS.App">
-      <HintPath>..\CMS.App\bin\Debug\CMS.App.dll</HintPath>
+      <HintPath>..\CMS.App\obj\Debug\CMS.App.dll</HintPath>
     </Reference>
     <Reference Include="CMS.Inf">
-      <HintPath>..\CMS.Inf\bin\Debug\CMS.Inf.dll</HintPath>
+      <HintPath>..\CMS.Inf\obj\Debug\CMS.Inf.dll</HintPath>
     </Reference>
     <Reference Include="CMS.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

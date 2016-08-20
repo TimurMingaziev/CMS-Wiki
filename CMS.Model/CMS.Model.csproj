@@ -67,8 +67,6 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="IRabbitPublish.cs" />
-    <Compile Include="IRabbitSubscribe.cs" />
     <Compile Include="IUse.cs" />
     <Compile Include="Migrations\201608141036372_InitialCreate.cs" />
     <Compile Include="Migrations\201608141036372_InitialCreate.Designer.cs">
