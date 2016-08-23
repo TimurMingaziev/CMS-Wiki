@@ -3,47 +3,75 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using RabbitMQ.Client.Events;
 using RabbitMQ.Client;
+using CMS.Data;
+using Newtonsoft.Json;
 
 namespace CMSPublish
 {
-    class Program
+    class RPCClient
     {
-        public static void Main(string[] args)
+        private IConnection connection;
+        private IModel channel;
+        private string replyQueueName;
+        private QueueingBasicConsumer consumer;
+
+        public RPCClient()
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
-        using(var connection = factory.CreateConnection())
-        using(var channel = connection.CreateModel())
+            connection = factory.CreateConnection();
+            channel = connection.CreateModel();
+            replyQueueName = channel.QueueDeclare().QueueName;
+            consumer = new QueueingBasicConsumer(channel);
+            channel.BasicConsume(queue: replyQueueName,
+                                 noAck: true,
+                                 consumer: consumer);
+        }
+
+        public string Call(object message,  string routingKey)
         {
-            channel.QueueDeclare(queue: "task_queue",
-                                 durable: true,
-                                 exclusive: false,
-                                 autoDelete: false,
-                                 arguments: null);
-
-            var message = GetMessage(args);
-            var body = Encoding.UTF8.GetBytes(message);
-
-            var properties = channel.CreateBasicProperties();
-            properties.SetPersistent(true);
-
+            var corrId = Guid.NewGuid().ToString();
+            var props = channel.CreateBasicProperties();
+            props.ReplyTo = replyQueueName;
+            props.CorrelationId = corrId;
+            var stringMessage = JsonConvert.SerializeObject(message);
+            var messageBytes = Encoding.UTF8.GetBytes(stringMessage);
             channel.BasicPublish(exchange: "",
-                                 routingKey: "task_queue",
-                                 basicProperties: properties,
-                                 body: body);
-            Console.WriteLine(" [x] Sent {0}", message);
+                                 routingKey: routingKey,
+                                 basicProperties: props,
+                                 body: messageBytes);
+
+            while (true)
+            {
+                var ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
+                if (ea.BasicProperties.CorrelationId == corrId)
+                {
+                    return Encoding.UTF8.GetString(ea.Body);
+                }
+            }
         }
 
-        Console.WriteLine(" Press [enter] to exit.");
-        Console.ReadLine();
-        }
-
-        private static string GetMessage(string[] args)
+        public void Close()
         {
-            return ((args.Length > 0)
-                   ? string.Join(" ", args)
-                   : "info: Hello World!");
+            connection.Close();
+        }
+    }
+
+    class RPC
+    {
+
+        public static void Main()
+        {
+            var rpcClient = new RPCClient();
+
+            PageDto page = new PageDto { NamePage = "1", ContentPage = "22", ChangerPage = "1", OwnerPage = "1", DateChangePage = DateTime.Now, DateCreatePage = DateTime.Now, SectionId = 1 };
+           
+            Console.WriteLine(" [x] Requesting fib(30)");
+            var response = rpcClient.Call(page, "func1");
+            Console.WriteLine(" [.] Got '{0}'", response);
+            Console.ReadLine();
+            rpcClient.Close();
         }
     }
 }
