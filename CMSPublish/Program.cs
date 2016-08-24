@@ -68,7 +68,12 @@ namespace CMSPublish
             PageDto page = new PageDto { NamePage = "1", ContentPage = "22", ChangerPage = "1", OwnerPage = "1", DateChangePage = DateTime.Now, DateCreatePage = DateTime.Now, SectionId = 1 };
            
             Console.WriteLine(" [x] Requesting fib(30)");
-            var response = rpcClient.Call(page, "func1");
+            MessageRabbitClass msg = new MessageRabbitClass
+            {
+                MethodName = "CreatePage",
+                Data = page
+            };
+            var response = rpcClient.Call(msg, "func1");
             Console.WriteLine(" [.] Got '{0}'", response);
             Console.ReadLine();
             rpcClient.Close();

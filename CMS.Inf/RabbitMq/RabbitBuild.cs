@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using NLog;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -7,27 +8,31 @@ namespace CMS.Inf.RabbitMq
 {
     public class RabbitBuild
     {
-        IModel _channel;
-        private object _serviceObject;
-        private string _queueName;
+        private ILogger _logger;
+        private IModel _channel;
         private EventingBasicConsumer _eventingBasicConsumer;
-        private RabbitMqPublisher _rabbitMqSender;
-        
-        public RabbitBuild(IModel chanel, string queueName, RabbitMqPublisher sender)
+        private string _queue;
+        public RabbitBuild(ILogger logger,IModel channel, string queue)
         {
-            _rabbitMqSender = sender;
-            _queueName = queueName;
-            _channel = chanel;
-            _channel.QueueDeclare(_queueName, false, false, false, null);
-            _channel.BasicQos(0, 100, false);
+            _logger = logger;
+            _queue = queue;
+            _channel = channel;
+            _channel.QueueDeclare(_queue, false, false, false, null);
+            _channel.BasicQos(0, 1000, false);
             _eventingBasicConsumer = new EventingBasicConsumer(_channel);
             _eventingBasicConsumer.Received += EventReceiver;
-            _channel.BasicConsume(_queueName, true, _eventingBasicConsumer);
+            _channel.BasicConsume(_queue, true, _eventingBasicConsumer);
         }
+       
         public void EventReceiver(object ch, BasicDeliverEventArgs ea)
         {
+            _logger.Info("rabbitmq catch event");
             
+            var response = string.Empty;
             var body = ea.Body;
+            var props = ea.BasicProperties;
+            var replyProps = _channel.CreateBasicProperties();
+            replyProps.CorrelationId = props.CorrelationId;
             string message = "";
             try
             {

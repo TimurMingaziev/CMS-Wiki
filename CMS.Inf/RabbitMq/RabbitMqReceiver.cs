@@ -13,7 +13,7 @@ namespace CMS.Inf.RabbitMq
             _channel = channel;
             _eventingBasicConsumer = new EventingBasicConsumer(_channel);
         }
-
+       
 
     }
 }

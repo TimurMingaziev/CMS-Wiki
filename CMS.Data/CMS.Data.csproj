@@ -55,7 +55,8 @@
   <ItemGroup>
     <Compile Include="CommentDto.cs" />
     <Compile Include="MarkDto.cs" />
-    <Compile Include="PageDTO.cs" />
+    <Compile Include="MessageRabbitClass.cs" />
+    <Compile Include="PageDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectionDto.cs" />
   </ItemGroup>

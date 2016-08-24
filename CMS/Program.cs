@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using CMS.App;
 using CMS.Inf;
 using CMS.Model;
 using MySql.Data.MySqlClient;
@@ -22,9 +23,7 @@ namespace CMS
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserContext, Configuration>());
             logger.Log(LogLevel.Info, "Application started");
             
-
-
-
+            var init = new InitializeClass(logger);
 
             //var use = new Use();
             //use.CreatePage("hi", "myFriend", DateTime.Now, DateTime.Now, "me", "you",
