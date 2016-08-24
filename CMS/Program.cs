@@ -22,8 +22,8 @@ namespace CMS
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserContext, Configuration>());
             logger.Log(LogLevel.Info, "Application started");
-            
-            var init = new InitializeClass(logger);
+            InitializeClass init = new InitializeClass(logger);
+            init.StartInit();
 
             //var use = new Use();
             //use.CreatePage("hi", "myFriend", DateTime.Now, DateTime.Now, "me", "you",
@@ -39,7 +39,7 @@ namespace CMS
 
            // new CallMthodFromJson().CallMethod("2");
             Console.WriteLine("успех");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

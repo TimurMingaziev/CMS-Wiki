@@ -16,10 +16,13 @@ namespace CMS.App
         IModel _connector;
         public InitializeClass(ILogger logger)
         {
-            _logger = logger;
-            _logger.Log(LogLevel.Info,"Start init");
-            _connector = new RabbitConnector(logger).Connect("localhost");
-            var rpc = new RabbitBuild(_connector,"rec_con");
+             _logger = logger;
+        }
+        public void StartInit()
+        {
+            _logger.Log(LogLevel.Info, "Start init");
+            _connector = new RabbitConnector(_logger).Connect("localhost");
+            var rpc = new RabbitBuild(_logger, _connector, "rec_con");
         }
     }
 }

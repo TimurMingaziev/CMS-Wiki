@@ -73,7 +73,7 @@ namespace CMSPublish
                 MethodName = "CreatePage",
                 Data = page
             };
-            var response = rpcClient.Call(msg, "func1");
+            var response = rpcClient.Call(msg, "rec_con");
             Console.WriteLine(" [.] Got '{0}'", response);
             Console.ReadLine();
             rpcClient.Close();
