@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CMS.Model;
 
-namespace CMS.Inf
+namespace CMS.Inf.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {

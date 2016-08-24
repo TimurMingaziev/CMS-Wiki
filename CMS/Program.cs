@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using CMS.App;
 using CMS.Inf;
 using CMS.Model;
 using MySql.Data.MySqlClient;
 using NLog;
 using RabbitMQ.Client;
-
-//using CMS.Model.Migrations;
+using CMS.Inf.Migrations;
 
 
 namespace CMS
@@ -23,10 +21,9 @@ namespace CMS
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserContext, Configuration>());
             logger.Log(LogLevel.Info, "Application started");
+            
 
-            IModel rabbitInit = new RabbitConnector().Connect("localhost");
 
-            var foo = new RabbitBuild(rabbitInit, "five", new RabbitMqPublisher(rabbitInit));
 
 
             //var use = new Use();

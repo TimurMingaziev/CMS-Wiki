@@ -47,7 +47,7 @@ namespace CMSSub
                         var request = JsonConvert.DeserializeObject<PageDto>((string)message);
                         
                         Console.WriteLine(" [.] fib({0})", message);
-                        response = fib(n).ToString();
+                      //  response = fib(n).ToString();
                     }
                     catch (Exception e)
                     {
@@ -67,20 +67,6 @@ namespace CMSSub
                 }
             }
         }
-
-        /// <summary>
-        /// Assumes only valid positive integer input.
-        /// Don't expect this one to work for big numbers,
-        /// and it's probably the slowest recursive implementation possible.
-        /// </summary>
-        private static int func1(int n)
-        {
-            if (n == 0 || n == 1)
-            {
-                return n;
-            }
-
-            return fib(n - 1) + fib(n - 2);
-        }
+        
     }
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CMS.Inf;
+using CMS.Inf.Repository;
 using  CMS.Model;
+using CMS.Model.Domain;
 
 namespace CMS.App
 {
@@ -12,7 +14,13 @@ namespace CMS.App
     {
         public void CreateComment(string content, string owner)
         {
-            throw new NotImplementedException();
+            var comment = new Comment()
+            {
+                ContentComment = "lol",
+                OwnerComment = "Tim",
+                PageId = 1
+                
+            }; 
         }
 
         public void CreateMark(short mark, string owner, DateTime date)

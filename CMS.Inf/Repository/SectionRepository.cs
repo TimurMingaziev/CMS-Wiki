@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using CMS.Model;
+using CMS.Model.Domain;
 
-namespace CMS.Inf
+namespace CMS.Inf.Repository
 {
     public class SectionRepository : Repository<Section>
     {

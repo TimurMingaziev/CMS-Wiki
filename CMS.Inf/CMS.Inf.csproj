@@ -79,21 +79,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="IRabbitMq.cs" />
-    <Compile Include="PageRepository.cs" />
+    <Compile Include="RabbitMq\IRabbitMq.cs" />
+    <Compile Include="Migrations\201608241051333_NewDtoMigration.cs" />
+    <Compile Include="Migrations\201608241051333_NewDtoMigration.Designer.cs">
+      <DependentUpon>201608241051333_NewDtoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repository\PageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RabbitBuild.cs" />
-    <Compile Include="RabbitConnector.cs" />
-    <Compile Include="RabbitMqPublisher.cs" />
-    <Compile Include="RabbitMqReceiver.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="SectionRepository.cs" />
+    <Compile Include="RabbitMq\RabbitBuild.cs" />
+    <Compile Include="RabbitMq\RabbitConnector.cs" />
+    <Compile Include="RabbitMq\RabbitMqPublisher.cs" />
+    <Compile Include="RabbitMq\RabbitMqReceiver.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\SectionRepository.cs" />
+    <Compile Include="UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608241051333_NewDtoMigration.resx">
+      <DependentUpon>201608241051333_NewDtoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
