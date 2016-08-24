@@ -1,34 +1,33 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using CMS.Data;
 using CMS.Model.Domain;
 using AutoMapper;
-using System;
 using NLog;
 
 namespace CMS.Inf.Repository
 {
-    public class SectionRepository : Repository<Section>
+    public class CommentRepository : Repository<CommentDto>
     {
         UserContext _userContext;
         IConfigurationProvider _config;
         ILogger _logger;
-        public SectionRepository(ILogger logger)
+        public CommentRepository(ILogger logger)
         {
             _logger = logger;
             _userContext = new UserContext();
-            _config = new MapperConfiguration(cfg => cfg.CreateMap<Section, SectionDto>());
-        }
-        public Section GetSectionById(int id)
-        {
-             return _userContext.Set<Section>().FirstOrDefault(x => x.SectionId == id);
+            _config = new MapperConfiguration(cfg => cfg.CreateMap<Comment, CommentDto>());
         }
 
-        public void CreateSection(Section section)
+        public void CreateComment(Comment comment)
         {
             try
             {
-                var dest = _config.CreateMapper().Map<Section, SectionDto>(section);
-                _userContext.Section.Add(dest);
+                var dest = _config.CreateMapper().Map<Comment, CommentDto>(comment);
+                _userContext.Comment.Add(dest);
                 _userContext.SaveChanges();
             }
             catch (Exception e)
@@ -37,5 +36,6 @@ namespace CMS.Inf.Repository
                 throw;
             }
         }
+
     }
 }

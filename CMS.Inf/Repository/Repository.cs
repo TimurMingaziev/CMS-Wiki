@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CMS.Model;
+using NLog;
 
 namespace CMS.Inf.Repository
 {

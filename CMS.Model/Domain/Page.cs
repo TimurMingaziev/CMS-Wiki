@@ -35,6 +35,17 @@ namespace CMS.Model.Domain
         public virtual ICollection<Page> PagesThis { get; set; }
         public virtual ICollection<Comment> Comments { get; set;}
         public virtual ICollection<Mark> Marks { get; set; }
-
+        
+        public void ChangePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid)
+        {
+            PageId = pageid;
+            NamePage = name;
+            ContentPage = content;
+            DateCreatePage = datecreate;
+            DateChangePage = datechange;
+            OwnerPage = owner;
+            ChangerPage = changer;
+            SectionId = sectionid;
+        }
     }
 }

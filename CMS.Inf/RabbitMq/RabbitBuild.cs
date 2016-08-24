@@ -42,10 +42,7 @@ namespace CMS.Inf.RabbitMq
             {
                 message = Encoding.UTF8.GetString(body);
                 Console.WriteLine(message);
-                
-             //   GetResult(message);
-
-                
+                this.GetResult(message);
             }
             catch (Exception e)
             {
@@ -53,17 +50,29 @@ namespace CMS.Inf.RabbitMq
             }
         }
 
-        private void GetResult(string message)
+        public void GetResult(string message)
         {
             var data = JsonConvert.DeserializeObject<MessageRabbitClass>(message);
             try
             {
                 Console.WriteLine(data.MethodName, data.Data);
-                CallMethod(data.MethodName, data.Data);
+                var _dto = WhatIsClass(data.MethodName, data.Data);
+                Console.WriteLine(_dto);
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public object WhatIsClass(string methodName, object data)
+        {
+            switch (methodName)
+            {
+                case "CreatePage": return (PageDto)data;
+                    break;
+                case "CreateComment": return (CommentDto)data;
+                default:
+                    return null;
             }
         }
 
