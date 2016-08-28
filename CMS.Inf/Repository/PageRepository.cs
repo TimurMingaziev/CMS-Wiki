@@ -32,9 +32,13 @@ namespace CMS.Inf.Repository
         {
             try
             {
+                _logger.Info("Repository : {0}", "/// mapping ///");
                 var dest = _config.CreateMapper().Map<Page, PageDto>(page);
+                _logger.Info("Repository : {0}", "/// adding ///");
                 _userContext.Page.Add(dest);
+                _logger.Info("Repository : {0}", "/// saving ///");
                 _userContext.SaveChanges();
+                _logger.Info("Repository : {0}", " done ");
             }
             catch (Exception e)
             {

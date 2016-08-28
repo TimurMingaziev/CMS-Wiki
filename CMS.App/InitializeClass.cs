@@ -22,7 +22,7 @@ namespace CMS.App
         {
             _logger.Log(LogLevel.Info, "Start init");
             _connector = new RabbitConnector(_logger).Connect("localhost");
-            var rpc = new RabbitBuild(_logger, _connector, "rec_con");
+            var rpc = new RabbitBuild(_logger, _connector, "rec_con", new UseCase(_logger));
         }
     }
 }

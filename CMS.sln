@@ -18,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Model", "CMS.Model\CMS.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSPublish", "CMSPublish\CMSPublish.csproj", "{C10CBCB7-8693-4747-BEED-2F7AD33FD863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSSub", "CMSSub\CMSSub.csproj", "{4CC61669-AA7A-46A7-A2CA-E4B6F6717006}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,10 +48,6 @@ Global
 		{C10CBCB7-8693-4747-BEED-2F7AD33FD863}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C10CBCB7-8693-4747-BEED-2F7AD33FD863}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C10CBCB7-8693-4747-BEED-2F7AD33FD863}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CC61669-AA7A-46A7-A2CA-E4B6F6717006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CC61669-AA7A-46A7-A2CA-E4B6F6717006}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CC61669-AA7A-46A7-A2CA-E4B6F6717006}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CC61669-AA7A-46A7-A2CA-E4B6F6717006}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

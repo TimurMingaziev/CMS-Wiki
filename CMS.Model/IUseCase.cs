@@ -7,7 +7,7 @@ using CMS.Model.Domain;
 
 namespace CMS.Model
 {
-    public interface IUse
+    public interface IUseCase
     {
         //        1.
         //Созадние раздела
@@ -23,7 +23,7 @@ namespace CMS.Model
         void CreateSection(string name, string descr, string owner);
 
         void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner,
-            string changer, Section section);
+            string changer, int sectionId);
 
         void UpdatePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid);
         void CreateComment(string content, string owner);

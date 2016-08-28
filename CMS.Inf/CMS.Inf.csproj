@@ -34,9 +34,6 @@
       <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CMS.Data">
-      <HintPath>..\CMS.Data\obj\Debug\CMS.Data.dll</HintPath>
-    </Reference>
     <Reference Include="CMS.Model">
       <HintPath>..\CMS.Model\obj\Debug\CMS.Model.dll</HintPath>
     </Reference>
@@ -107,7 +104,12 @@
       <DependentUpon>201608241051333_NewDtoMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.Data\CMS.Data.csproj">
+      <Project>{2d1411ea-942d-4a85-a13b-a517f26a2915}</Project>
+      <Name>CMS.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

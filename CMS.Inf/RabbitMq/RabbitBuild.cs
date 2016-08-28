@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using NLog;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using CMS.Data;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RabbitMQ.Util;
 
 namespace CMS.Inf.RabbitMq
 {
@@ -14,9 +17,11 @@ namespace CMS.Inf.RabbitMq
         private IModel _channel;
         private EventingBasicConsumer _eventingBasicConsumer;
         private string _queue;
-
-        public RabbitBuild(ILogger logger,IModel channel, string queue)
+        object _usercase;
+        
+        public RabbitBuild(ILogger logger,IModel channel, string queue, object usercase)
         {
+            _usercase = usercase;
             _logger = logger;
             _queue = queue;
             _channel = channel;
@@ -41,41 +46,52 @@ namespace CMS.Inf.RabbitMq
             try
             {
                 message = Encoding.UTF8.GetString(body);
-                Console.WriteLine(message);
-                this.GetResult(message);
+                _logger.Info("JSON is comming: {0}", message);
+                GetResult(message);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                _logger.Error(e.Message);
             }
         }
 
         public void GetResult(string message)
         {
-            var data = JsonConvert.DeserializeObject<MessageRabbitClass>(message);
+           
             try
             {
+                _logger.Info("Start parsing");
+                var data = JsonConvert.DeserializeObject<MessageRabbitClass>(message);
                 Console.WriteLine(data.MethodName, data.Data);
-                var _dto = WhatIsClass(data.MethodName, data.Data);
-                Console.WriteLine(_dto);
+                object dto = WhatIsClass(data.MethodName, (JObject)data.Data);
+                var method = _usercase.GetType().GetMethod(data.MethodName);
+                var methodParameters = method.GetParameters();
+
+                foreach (var VARIABLE in methodParameters)
+                {
+                    Console.WriteLine(VARIABLE);
+                }
+                method.Invoke(_usercase, new object[] {dto});
+
+               
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Error(ex.Message);
             }
         }
-        public object WhatIsClass(string methodName, object data)
+        public object WhatIsClass(string methodName, JObject data)
         {
             switch (methodName)
             {
-                case "CreatePage": return (PageDto)data;
-                    break;
-                case "CreateComment": return (CommentDto)data;
+                case "CreatePage": return data.ToObject<PageDtoWhisoutIdForCallMethodFromUseCase>();
+               // case "CreatePage": return data.ToObject<PageDto>();
+                case "CreateComment": return data.ToObject<CommentDto>();
                 default:
                     return null;
             }
         }
-
+        
         private void CallMethod(string methodName, object param)
         {
             

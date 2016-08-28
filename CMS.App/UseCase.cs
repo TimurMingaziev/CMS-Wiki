@@ -7,11 +7,12 @@ using CMS.Inf;
 using CMS.Inf.Repository;
 using CMS.Model;
 using CMS.Model.Domain;
+using AutoMapper;
 using NLog;
 
 namespace CMS.App
 {
-    public class Use : IUse
+    public class UseCase : IUseCase
     {
         PageRepository _pageRepo;
         SectionRepository _sectionRepo;
@@ -19,7 +20,7 @@ namespace CMS.App
         MarkRepository _markRepo;
         ILogger _logger;
 
-        public Use(ILogger logger)
+        public UseCase(ILogger logger)
         {
             _logger = logger;
             _pageRepo = new PageRepository(_logger);
@@ -51,19 +52,30 @@ namespace CMS.App
 
         }
 
-        public void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner, string changer, Section section)
+        //dto object in params!
+
+        public void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner, string changer, int sectionId)
         {
-            var page = new Page
+            try
             {
-                NamePage = name,
-                ChangerPage = changer,
-                ContentPage = content,
-                DateChangePage = dateChange,
-                DateCreatePage = dateCreate,
-                Section = section,
-                OwnerPage = owner
-            };
-            _pageRepo.CreatePage(page);
+                _logger.Info("UseCase : {0}", "start create page");
+                var page = new Page
+                {
+                    NamePage = name,
+                    ChangerPage = changer,
+                    ContentPage = content,
+                    DateChangePage = dateChange,
+                    DateCreatePage = dateCreate,
+                    OwnerPage = owner,
+                    SectionId = sectionId
+                };
+                _logger.Info("UseCase : {0}", "adding to repository");
+                _pageRepo.CreatePage(page);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
         }
         
 

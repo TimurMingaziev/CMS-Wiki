@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CMS.Model">
       <HintPath>..\CMS.Model\bin\Debug\CMS.Model.dll</HintPath>
     </Reference>
@@ -66,13 +70,17 @@
   <ItemGroup>
     <Compile Include="InitializeClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Use.cs" />
+    <Compile Include="UseCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CMS.Data\CMS.Data.csproj">
+      <Project>{2d1411ea-942d-4a85-a13b-a517f26a2915}</Project>
+      <Name>CMS.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CMS.Inf\CMS.Inf.csproj">
       <Project>{bce4d42e-1e2e-417d-83ba-80ae3954e0f8}</Project>
       <Name>CMS.Inf</Name>
