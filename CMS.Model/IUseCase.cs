@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CMS.Model.Domain;
 
+
 namespace CMS.Model
 {
     public interface IUseCase
@@ -22,10 +23,9 @@ namespace CMS.Model
 
         void CreateSection(string name, string descr, string owner);
 
-        void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner,
-            string changer, int sectionId);
-
-        void UpdatePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid);
+        void CreatePage(object dto);
+        
+       void UpdatePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid);
         void CreateComment(string content, string owner);
         void CreateMark(short mark, string owner, DateTime date, int pageId);
 

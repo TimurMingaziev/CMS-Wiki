@@ -77,6 +77,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mapper.cs" />
+    <Compile Include="Migrations\201608281426151_NewPageDto.cs" />
+    <Compile Include="Migrations\201608281426151_NewPageDto.Designer.cs">
+      <DependentUpon>201608281426151_NewPageDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608281430465_NewPageDto1.cs" />
+    <Compile Include="Migrations\201608281430465_NewPageDto1.Designer.cs">
+      <DependentUpon>201608281430465_NewPageDto1.cs</DependentUpon>
+    </Compile>
     <Compile Include="RabbitMq\IRabbitMq.cs" />
     <Compile Include="Migrations\201608241051333_NewDtoMigration.cs" />
     <Compile Include="Migrations\201608241051333_NewDtoMigration.Designer.cs">
@@ -102,6 +110,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608241051333_NewDtoMigration.resx">
       <DependentUpon>201608241051333_NewDtoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608281426151_NewPageDto.resx">
+      <DependentUpon>201608281426151_NewPageDto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608281430465_NewPageDto1.resx">
+      <DependentUpon>201608281430465_NewPageDto1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

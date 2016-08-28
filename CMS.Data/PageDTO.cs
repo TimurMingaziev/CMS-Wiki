@@ -18,9 +18,10 @@ namespace CMS.Data
         public string OwnerPage { get; set; }
         public string ChangerPage { get; set; }
         public  int SectionId { get; set; }
-        public virtual ICollection<PageDto> PagesThis { get; set; }
-        public virtual ICollection<CommentDto> Comments { get; set; }
-        public virtual ICollection<MarkDto> Marks { get; set; }
+        
+   //     public virtual ICollection<PageDto> PagesThis { get; set; }
+   //        public virtual ICollection<CommentDto> Comments { get; set; }
+     //     public virtual ICollection<MarkDto> Marks { get; set; }
 
     }
 }

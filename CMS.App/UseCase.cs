@@ -8,6 +8,7 @@ using CMS.Inf.Repository;
 using CMS.Model;
 using CMS.Model.Domain;
 using AutoMapper;
+using CMS.Data;
 using NLog;
 
 namespace CMS.App
@@ -54,20 +55,44 @@ namespace CMS.App
 
         //dto object in params!
 
-        public void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner, string changer, int sectionId)
+        //public void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner, string changer, int sectionId)
+        //{
+        //    try
+        //    {
+        //        _logger.Info("UseCase : {0}", "start create page");
+        //        var page = new Page
+        //        {
+        //            NamePage = name,
+        //            ChangerPage = changer,
+        //            ContentPage = content,
+        //            DateChangePage = dateChange,
+        //            DateCreatePage = dateCreate,
+        //            OwnerPage = owner,
+        //            SectionId = sectionId
+        //        };
+        //        _logger.Info("UseCase : {0}", "adding to repository");
+        //        _pageRepo.CreatePage(page);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.Error(ex.Message);
+        //    }
+        //}
+        public void CreatePage(object dtoObj)
         {
             try
             {
                 _logger.Info("UseCase : {0}", "start create page");
+                var dto = (PageDtoWhisoutIdForCallMethodFromUseCase) dtoObj;
                 var page = new Page
                 {
-                    NamePage = name,
-                    ChangerPage = changer,
-                    ContentPage = content,
-                    DateChangePage = dateChange,
-                    DateCreatePage = dateCreate,
-                    OwnerPage = owner,
-                    SectionId = sectionId
+                    NamePage = dto.NamePage,
+                    ChangerPage = dto.ChangerPage,
+                    ContentPage = dto.ContentPage,
+                    DateChangePage = dto.DateChangePage,
+                    DateCreatePage = dto.DateCreatePage,
+                    OwnerPage = dto.OwnerPage,
+                    SectionId = dto.SectionId
                 };
                 _logger.Info("UseCase : {0}", "adding to repository");
                 _pageRepo.CreatePage(page);
@@ -77,7 +102,7 @@ namespace CMS.App
                 _logger.Error(ex.Message);
             }
         }
-        
+
 
         public void CreateSection(string name, string descr, string owner)
         {
