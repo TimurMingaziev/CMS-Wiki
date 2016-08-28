@@ -39,11 +39,16 @@ namespace CMS.Inf.Repository
                 _logger.Info("Repository : {0}", "/// saving ///");
                 _userContext.SaveChanges();
                 _logger.Info("Repository : {0}", " done ");
+                
             }
             catch (Exception e)
             {
                 Console.WriteLine("IOException source: {0}", e.Source);
                 throw;
+            }
+            finally
+            {
+                _userContext.Database.Connection.Close();
             }
 
 

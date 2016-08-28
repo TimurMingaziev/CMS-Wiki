@@ -83,7 +83,7 @@ namespace CMS.App
             try
             {
                 _logger.Info("UseCase : {0}", "start create page");
-                var dto = (PageDtoWhisoutIdForCallMethodFromUseCase) dtoObj;
+                var dto = (PageDto) dtoObj;
                 var page = new Page
                 {
                     NamePage = dto.NamePage,
@@ -96,6 +96,7 @@ namespace CMS.App
                 };
                 _logger.Info("UseCase : {0}", "adding to repository");
                 _pageRepo.CreatePage(page);
+               
             }
             catch (Exception ex)
             {

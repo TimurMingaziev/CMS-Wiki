@@ -61,7 +61,6 @@
     <Compile Include="MarkDto.cs" />
     <Compile Include="MessageRabbitClass.cs" />
     <Compile Include="PageDto.cs" />
-    <Compile Include="PageDtoWhisoutIdForCallMethodFromUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectionDto.cs" />
   </ItemGroup>

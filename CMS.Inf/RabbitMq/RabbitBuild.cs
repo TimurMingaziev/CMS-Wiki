@@ -84,8 +84,8 @@ namespace CMS.Inf.RabbitMq
         {
             switch (methodName)
             {
-                case "CreatePage": return data.ToObject<PageDtoWhisoutIdForCallMethodFromUseCase>();
-               // case "CreatePage": return data.ToObject<PageDto>();
+              //  case "CreatePage": return data.ToObject<PageDtoWhisoutIdForCallMethodFromUseCase>();
+                case "CreatePage": return data.ToObject<PageDto>();
                 case "CreateComment": return data.ToObject<CommentDto>();
                 default:
                     return null;
