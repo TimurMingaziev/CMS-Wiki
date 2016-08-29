@@ -47,13 +47,14 @@ namespace CMS.Inf.RabbitMq
             var props = ea.BasicProperties;
             _replyProps = _channel.CreateBasicProperties();
             _replyProps.CorrelationId = props.CorrelationId;
-            string message = "";
             try
             {
-                message = Encoding.UTF8.GetString(body);
+                var message = Encoding.UTF8.GetString(body);
                 _logger.Info("JSON is comming: {0}", message);
                 
                GetResult(message);
+                _rabbitMqPublisher.Send("", props.ReplyTo, _replyProps, "created");
+
             }
             catch (Exception e)
             {
@@ -67,17 +68,9 @@ namespace CMS.Inf.RabbitMq
             {
                 _logger.Info("Start parsing");
                 var data = JsonConvert.DeserializeObject<MessageRabbitClass>(message);
-                Console.WriteLine(data.MethodName, data.Data);
                 object dto = WhatIsClass(data.MethodName, (JObject) data.Data);
-                var method = _usercase.GetType().GetMethod(data.MethodName);
-                var methodParameters = method.GetParameters();
-
-                foreach (var VARIABLE in methodParameters)
-                {
-                    Console.WriteLine(VARIABLE);
-                }
-                method.Invoke(_usercase, new object[] {dto});
-
+                CallMethod(data.MethodName, dto);
+                
             }
             catch (Exception ex)
             {
@@ -90,18 +83,29 @@ namespace CMS.Inf.RabbitMq
             {
                 case "CreatePage": return data.ToObject<PageDto>();
                 case "CreateComment": return data.ToObject<CommentDto>();
+                case "CreateMark":
+                    return data.ToObject<MarkDto>();
+                case "CreateSection":
+                    return data.ToObject<SectionDto>();
+                case "UpdatePage":
+                    return data.ToObject<PageDto>();
                 default:
                     return null;
             }
         }
+        
 
-        public void SendEvent()
+        public void CallMethod(string methodName, object dto)
         {
-            _rabbitMqPublisher.Send("","rec_con", _replyProps, "created");
-        }
-        private void CallMethod(string methodName, object param)
-        {
-            
+            _logger.Info("Calling method");
+            var method = _usercase.GetType().GetMethod(methodName);
+            var methodParameters = method.GetParameters();
+
+            foreach (var VARIABLE in methodParameters)
+            {
+                Console.WriteLine(VARIABLE);
+            }
+            method.Invoke(_usercase, new object[] { dto });
         }
     }
 }

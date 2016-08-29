@@ -7,9 +7,8 @@ namespace CMS.Model.Domain
         public Section() {
             PagesOfSection = new List<Page>();
         }
-        public Section(int id, string name, string decr, string owner)
+        public Section(string name, string decr, string owner)
         {
-            SectionId = id;
             NameSection = name;
             DecriptionSection = decr;
             OwnerSection = owner;

@@ -21,13 +21,13 @@ namespace CMS.Model
         //5.
         //Выставление оценки
 
-        void CreateSection(string name, string descr, string owner);
+        void CreateSection(object dto);
 
         object CreatePage(object dto);
         
-       void UpdatePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid);
-        void CreateComment(string content, string owner);
-        void CreateMark(short mark, string owner, DateTime date, int pageId);
+       void UpdatePage(object dto);
+        void CreateComment(object dto);
+        void CreateMark(object dto);
 
     }
 }

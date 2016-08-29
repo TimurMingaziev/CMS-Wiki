@@ -30,26 +30,36 @@ namespace CMS.App
             _markRepo = new MarkRepository(_logger);
         }
 
-        public void CreateComment(string content, string owner)
+        public void CreateComment(object dtoObj)
         {
-            var comment = new Comment()
+            try
             {
-                ContentComment = "lol",
-                OwnerComment = "Tim",
-                PageId = 1
-            }; 
+                var dto = (CommentDto) dtoObj;
+                _logger.Info("UseCase : {0}", "start create comment");
+                var comment = new Comment(dto.ContentComment,dto.OwnerComment,dto.PageId){};
+                _logger.Info("UseCase : {0}", "adding to repository");
+                _commentRepo.CreateComment(comment);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
         }
 
-        public void CreateMark(short markThis, string owner, DateTime date, int pageId)
+        public void CreateMark(object dtoObj)
         {
-            var mark = new Mark()
+            try
             {
-                MarkThis = markThis,
-                OwnerMark = owner,
-                DateMark = date,
-                PageId = pageId
-            };
-            _markRepo.CreateMark(mark);
+                _logger.Info("UseCase : {0}", "start create mark");
+                var dto = (MarkDto) dtoObj;
+                var mark = new Mark(dto.MarkThis,dto.OwnerMark,dto.DateMark,dto.PageId) {};
+                _logger.Info("UseCase : {0}", "adding to repository");
+                _markRepo.CreateMark(mark);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
 
         }
 
@@ -60,16 +70,8 @@ namespace CMS.App
             {
                 _logger.Info("UseCase : {0}", "start create page");
                 dto = (PageDto) dtoObj;
-                var page = new Page
-                {
-                    NamePage = dto.NamePage,
-                    ChangerPage = dto.ChangerPage,
-                    ContentPage = dto.ContentPage,
-                    DateChangePage = dto.DateChangePage,
-                    DateCreatePage = dto.DateCreatePage,
-                    OwnerPage = dto.OwnerPage,
-                    SectionId = dto.SectionId
-                };
+                var page  = new Page(dto.NamePage,dto.ContentPage,dto.DateCreatePage, dto.DateChangePage,
+                    dto.OwnerPage,dto.ChangerPage,dto.SectionId);
                 _logger.Info("UseCase : {0}", "adding to repository");
                 _pageRepo.CreatePage(page);
             }
@@ -81,22 +83,26 @@ namespace CMS.App
         }
 
 
-        public void CreateSection(string name, string descr, string owner)
+        public void CreateSection(object dtoObj)
         {
-            var section = new Section
+            try
             {
-                NameSection = name,
-                DecriptionSection = descr,
-                OwnerSection = owner
-            };
-            _sectionRepo.CreateSection(section);
+                _logger.Info("UseCase : {0}", "start create section");
+                var dto = (SectionDto)dtoObj;
+                var section = new Section(dto.NameSection, dto.DecriptionSection, dto.OwnerSection) {};
+                _sectionRepo.CreateSection(section);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.Message);
+            }
 
         }
 
-        public void UpdatePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid)
+        public void UpdatePage(object objDto)
         {
             var page = new Page();
-            page.ChangePage( pageid,  name,  content,  datecreate,  datechange,  owner,  changer,  sectionid);
+            //page.ChangePage( pageid,  name,  content,  datecreate,  datechange,  owner,  changer,  sectionid);
             _pageRepo.UpdatePage(page);
 
 

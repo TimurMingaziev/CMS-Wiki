@@ -26,14 +26,22 @@ namespace CMS.Inf.Repository
         {
             try
             {
+                _logger.Info("Repository : {0}", "/// mapping ///");
                 var dest = _config.CreateMapper().Map<Mark, MarkDto>(mark);
+                _logger.Info("Repository : {0}", "/// adding ///");
                 _userContext.Mark.Add(dest);
+                _logger.Info("Repository : {0}", "/// saving ///");
                 _userContext.SaveChanges();
+                _logger.Info("Repository : {0}", " done ");
             }
             catch (Exception e)
             {
-                Console.WriteLine("IOException source: {0}", e.Source);
+                _logger.Error(e.Source + " : " + e.Message);
                 throw;
+            }
+            finally
+            {
+                _userContext.Database.Connection.Close();
             }
         }
     }

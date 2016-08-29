@@ -11,9 +11,9 @@ namespace CMS.Data
     {
         [Key]
         public int MarkId { get; set; }
-        public short MarkThis { get; set; }
+        public int MarkThis { get; set; }
         public string OwnerMark { get; set; }
         public DateTime DateMark { get; set; }
-        public int? PageId { get; set; }
+        public int PageId { get; set; }
     }
 }

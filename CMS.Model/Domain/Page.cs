@@ -12,10 +12,10 @@ namespace CMS.Model.Domain
             Comments = new List<Comment>();
             Marks = new List<Mark>();
         }
-        public Page(int pageid, string name, string content, DateTime datecreate, 
-            DateTime datechange, string owner, string changer,int sectionid, Section section) 
+        public Page( string name, string content, DateTime datecreate, 
+            DateTime datechange, string owner, string changer,int sectionid) 
         {
-            PageId = pageid;
+
             NamePage = name;
             ContentPage = content;
             DateCreatePage = datecreate;
@@ -23,8 +23,6 @@ namespace CMS.Model.Domain
             OwnerPage = owner;
             ChangerPage = changer;
             SectionId = sectionid;
-            Section = section;
-            PageCreated();
 
         }
         public int PageId { get; set; }

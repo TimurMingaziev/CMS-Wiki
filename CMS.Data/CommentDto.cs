@@ -13,6 +13,6 @@ namespace CMS.Data
         public int CommentId { get; set; }
         public string ContentComment { get; set; }
         public string OwnerComment { get; set; }
-        public int? PageId { get; set; }
+        public int PageId { get; set; }
     }
 }

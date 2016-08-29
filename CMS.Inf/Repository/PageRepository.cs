@@ -43,7 +43,7 @@ namespace CMS.Inf.Repository
             }
             catch (Exception e)
             {
-                Console.WriteLine("IOException source: {0}", e.Source);
+                _logger.Error(e.Source + " : " +e.Message);
                 throw;
             }
             finally

@@ -97,6 +97,14 @@
     <Compile Include="Migrations\201608241051333_NewDtoMigration.Designer.cs">
       <DependentUpon>201608241051333_NewDtoMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608292000484_NewMarkCommentDto.cs" />
+    <Compile Include="Migrations\201608292000484_NewMarkCommentDto.Designer.cs">
+      <DependentUpon>201608292000484_NewMarkCommentDto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608292140158_NewMarkDto.cs" />
+    <Compile Include="Migrations\201608292140158_NewMarkDto.Designer.cs">
+      <DependentUpon>201608292140158_NewMarkDto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\MarkRepository.cs" />
@@ -129,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608281609299_NewPageDto3.resx">
       <DependentUpon>201608281609299_NewPageDto3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608292000484_NewMarkCommentDto.resx">
+      <DependentUpon>201608292000484_NewMarkCommentDto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608292140158_NewMarkDto.resx">
+      <DependentUpon>201608292140158_NewMarkDto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
