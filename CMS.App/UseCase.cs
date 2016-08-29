@@ -20,7 +20,7 @@ namespace CMS.App
         CommentRepository _commentRepo;
         MarkRepository _markRepo;
         ILogger _logger;
-
+         
         public UseCase(ILogger logger)
         {
             _logger = logger;
@@ -63,13 +63,12 @@ namespace CMS.App
 
         }
 
-        public object CreatePage(object dtoObj)
+        public void CreatePage(object dtoObj)
         {
-            PageDto dto=null;
             try
             {
                 _logger.Info("UseCase : {0}", "start create page");
-                dto = (PageDto) dtoObj;
+               var dto = (PageDto) dtoObj;
                 var page  = new Page(dto.NamePage,dto.ContentPage,dto.DateCreatePage, dto.DateChangePage,
                     dto.OwnerPage,dto.ChangerPage,dto.SectionId);
                 _logger.Info("UseCase : {0}", "adding to repository");
@@ -79,7 +78,6 @@ namespace CMS.App
             {
                 _logger.Error(ex.Message);
             }
-            return dto;
         }
 
 
@@ -101,9 +99,10 @@ namespace CMS.App
 
         public void UpdatePage(object objDto)
         {
-            var page = new Page();
-            //page.ChangePage( pageid,  name,  content,  datecreate,  datechange,  owner,  changer,  sectionid);
-            _pageRepo.UpdatePage(page);
+            //Page page = new Page();
+            //var dto = (Page) objDto;
+            //page.ChangePage(dto.PageId, dto);
+            //_pageRepo.UpdatePage(page);
 
 
         }

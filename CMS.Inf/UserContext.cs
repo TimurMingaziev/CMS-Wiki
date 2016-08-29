@@ -9,7 +9,7 @@ namespace CMS.Inf
 
     public class UserContext : DbContext
     {
-
+    
         public UserContext()
             : base("UserContext")
         {
@@ -29,18 +29,10 @@ namespace CMS.Inf
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Section>().MapToStoredProcedures();
-            //modelBuilder.Entity<Page>().MapToStoredProcedures();
-            //modelBuilder.Entity<Mark>().MapToStoredProcedures();
-            //modelBuilder.Entity<Comment>().MapToStoredProcedures();
             modelBuilder.Entity<SectionDto>().ToTable("Sections");
             modelBuilder.Entity<PageDto>().ToTable("Pages");
             modelBuilder.Entity<MarkDto>().ToTable("Marks");
             modelBuilder.Entity<CommentDto>().ToTable("Comments");
         }
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        //}
     }
 }

@@ -23,9 +23,9 @@ namespace CMS.Model
 
         void CreateSection(object dto);
 
-        object CreatePage(object dto);
+        void CreatePage(object dto);
         
-       void UpdatePage(object dto);
+        void UpdatePage(object dto);
         void CreateComment(object dto);
         void CreateMark(object dto);
 
