@@ -4,8 +4,8 @@ using RabbitMQ.Client;
 
 namespace CMS.Inf.RabbitMq
 {
-    public class RabbitMqPublisher : IRabbitMq
-    {
+    public class RabbitMqPublisher { 
+
         private IModel _channel;
 
         public RabbitMqPublisher(IModel channel)
@@ -13,23 +13,11 @@ namespace CMS.Inf.RabbitMq
             _channel = channel;
         }
 
-
-        public IModel Connect(string host)
+        public void Send(string exchangeName, string routingKey, IBasicProperties replyProps, string message)
         {
-            throw new NotImplementedException();
-        }
-
-        public void publish()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Send(string exchangeName, string routingKey, string message)
-        {
-            _channel.ExchangeDeclare(exchangeName, "topic");
             _channel.BasicPublish(exchangeName,
                                 routingKey,
-                                null,
+                                replyProps,
                                 Encoding.UTF8.GetBytes(message));
         }
     }

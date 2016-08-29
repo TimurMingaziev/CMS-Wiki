@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CMS.Inf.RabbitMq;
+using CMS.Model.Domain;
 using NLog;
 using RabbitMQ.Client;
 
@@ -22,7 +23,9 @@ namespace CMS.App
         {
             _logger.Log(LogLevel.Info, "Start init");
             _connector = new RabbitConnector(_logger).Connect("localhost");
-            var rpc = new RabbitBuild(_logger, _connector, "rec_con", new UseCase(_logger));
+            var usecase = new UseCase(_logger);
+            
+            var rpc = new RabbitBuild(_logger, _connector, "rec_con", usecase);
         }
     }
 }

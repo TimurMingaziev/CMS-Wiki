@@ -5,12 +5,15 @@ namespace CMS.Model.Domain
 {
     public class Page
     {
+        public delegate void MethodContainer();
+        public static event MethodContainer OnCreate;
         public Page() {
             PagesThis = new List<Page>();
             Comments = new List<Comment>();
             Marks = new List<Mark>();
         }
-        public Page(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer,int sectionid, Section section)
+        public Page(int pageid, string name, string content, DateTime datecreate, 
+            DateTime datechange, string owner, string changer,int sectionid, Section section) 
         {
             PageId = pageid;
             NamePage = name;
@@ -21,6 +24,8 @@ namespace CMS.Model.Domain
             ChangerPage = changer;
             SectionId = sectionid;
             Section = section;
+            PageCreated();
+
         }
         public int PageId { get; set; }
         public string NamePage { get; set; }
@@ -35,7 +40,13 @@ namespace CMS.Model.Domain
         public virtual ICollection<Page> PagesThis { get; set; }
         public virtual ICollection<Comment> Comments { get; set;}
         public virtual ICollection<Mark> Marks { get; set; }
-        
+
+        public static void PageCreated()
+        {
+            OnCreate();
+            Console.WriteLine("Page created");
+        }
+
         public void ChangePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid)
         {
             PageId = pageid;

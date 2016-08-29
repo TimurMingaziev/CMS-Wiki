@@ -23,7 +23,7 @@ namespace CMS.Model
 
         void CreateSection(string name, string descr, string owner);
 
-        void CreatePage(object dto);
+        object CreatePage(object dto);
         
        void UpdatePage(int pageid, string name, string content, DateTime datecreate, DateTime datechange, string owner, string changer, int sectionid);
         void CreateComment(string content, string owner);

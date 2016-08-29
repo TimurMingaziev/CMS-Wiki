@@ -4,7 +4,7 @@ using RabbitMQ.Client;
 
 namespace CMS.Inf.RabbitMq
 {
-    public class RabbitConnector : IRabbitMq
+    public class RabbitConnector
     {
 
         private string _host { get; set; }
@@ -45,15 +45,6 @@ namespace CMS.Inf.RabbitMq
             _channel.Close();
             _logger.Info("Disconnected (rabbit)");
         }
-
-        public void publish()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Send(string exchangeName, string routingKey, string message)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

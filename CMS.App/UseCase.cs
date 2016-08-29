@@ -53,37 +53,13 @@ namespace CMS.App
 
         }
 
-        //dto object in params!
-
-        //public void CreatePage(string name, string content, DateTime dateCreate, DateTime dateChange, string owner, string changer, int sectionId)
-        //{
-        //    try
-        //    {
-        //        _logger.Info("UseCase : {0}", "start create page");
-        //        var page = new Page
-        //        {
-        //            NamePage = name,
-        //            ChangerPage = changer,
-        //            ContentPage = content,
-        //            DateChangePage = dateChange,
-        //            DateCreatePage = dateCreate,
-        //            OwnerPage = owner,
-        //            SectionId = sectionId
-        //        };
-        //        _logger.Info("UseCase : {0}", "adding to repository");
-        //        _pageRepo.CreatePage(page);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.Error(ex.Message);
-        //    }
-        //}
-        public void CreatePage(object dtoObj)
+        public object CreatePage(object dtoObj)
         {
+            PageDto dto=null;
             try
             {
                 _logger.Info("UseCase : {0}", "start create page");
-                var dto = (PageDto) dtoObj;
+                dto = (PageDto) dtoObj;
                 var page = new Page
                 {
                     NamePage = dto.NamePage,
@@ -96,12 +72,12 @@ namespace CMS.App
                 };
                 _logger.Info("UseCase : {0}", "adding to repository");
                 _pageRepo.CreatePage(page);
-               
             }
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
             }
+            return dto;
         }
 
 

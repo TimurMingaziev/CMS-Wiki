@@ -4,69 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RabbitMQ.Client;
-using Newtonsoft.Json;
 using RabbitMQ.Client.Events;
-using CMS.Data;
 
 namespace CMSSub
 {
     class Program
     {
-
-        public static void Main()
+        static void Main(string[] args)
         {
-
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: "rpc_queue",
+                channel.QueueDeclare(queue: "hello",
                                      durable: false,
                                      exclusive: false,
                                      autoDelete: false,
                                      arguments: null);
-                channel.BasicQos(0, 1, false);
-                var consumer = new QueueingBasicConsumer(channel);
-                channel.BasicConsume(queue: "rpc_queue",
-                                     noAck: false,
-                                     consumer: consumer);
-                Console.WriteLine(" [x] Awaiting RPC requests");
-                
-                while (true)
-                {
-                    string response = null;
-                    var ea = (BasicDeliverEventArgs)consumer.Queue.Dequeue();
 
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += (model, ea) =>
+                {
                     var body = ea.Body;
-                    var props = ea.BasicProperties;
-                    var replyProps = channel.CreateBasicProperties();
-                    replyProps.CorrelationId = props.CorrelationId;
-                    try
-                    {
-                        var message = Encoding.UTF8.GetString(body);
-                        var request = JsonConvert.DeserializeObject<PageDto>((string)message);
-                        
-                        Console.WriteLine(" [.] fib({0})", message);
-                      //  response = fib(n).ToString();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(" [.] " + e.Message);
-                        response = "";
-                    }
-                    finally
-                    {
-                        var responseBytes = Encoding.UTF8.GetBytes(response);
-                        channel.BasicPublish(exchange: "",
-                                             routingKey: props.ReplyTo,
-                                             basicProperties: replyProps,
-                                             body: responseBytes);
-                        channel.BasicAck(deliveryTag: ea.DeliveryTag,
-                                         multiple: false);
-                    }
-                }
+                    var message = Encoding.UTF8.GetString(body);
+                    Console.WriteLine(" [x] Received {0}", message);
+                };
+                channel.BasicConsume(queue: "hello",
+                                     noAck: true,
+                                     consumer: consumer);
+
+                Console.WriteLine(" Press [enter] to exit.");
+                Console.ReadLine();
             }
         }
-        
     }
 }
