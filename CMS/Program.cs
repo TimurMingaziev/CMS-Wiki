@@ -24,20 +24,6 @@ namespace CMS
             logger.Log(LogLevel.Info, "Application started");
             InitializeClass init = new InitializeClass(logger);
             init.StartInit();
-
-            //var use = new Use();
-            //use.CreatePage("hi", "myFriend", DateTime.Now, DateTime.Now, "me", "you",
-            //    new SectionRepository().GetSectionById(1));
-
-            //Console.WriteLine("PageRepository().GetAll()");
-            //IEnumerable<Page> pages = new PageRepository().GetAll();
-            //foreach (Page p in pages)
-            //    Console.WriteLine(p.NamePage);
-
-            //logger.Log(LogLevel.Info, "Repository Page get by id: {0}",
-            //    new PageRepository().GetPageById(1).DateChangePage);
-
-           // new CallMthodFromJson().CallMethod("2");
             Console.WriteLine("успех");
             Console.ReadKey();
         }
