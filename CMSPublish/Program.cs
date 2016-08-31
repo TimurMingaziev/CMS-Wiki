@@ -83,7 +83,7 @@ namespace CMSPublish
             MessageRabbitClass msg = new MessageRabbitClass
             {
                 MethodName = "CreatePage",
-                Data = page
+                Data = "12"
             };
             var response = rpcClient.Call(msg, "rec_con");
             Console.WriteLine(" [.] Got '{0}'", response);

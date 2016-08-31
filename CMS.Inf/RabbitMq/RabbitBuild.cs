@@ -21,10 +21,12 @@ namespace CMS.Inf.RabbitMq
         object _usercase;
         RabbitMqPublisher _rabbitMqPublisher;
         IBasicProperties _replyProps;
-        
-        public RabbitBuild(ILogger logger,IModel channel, string queue, object usercase)
+        Timer _aTimer;
+        StatisticData _statisticData;
+
+        public RabbitBuild(ILogger logger,IModel channel, string queue, object usercase, StatisticData statisticData)
         {
-            
+            _statisticData = statisticData;
             _usercase = usercase;
             _logger = logger;
             _queue = queue;
@@ -35,11 +37,13 @@ namespace CMS.Inf.RabbitMq
             EventingBasicConsumer eventingBasicConsumer = new EventingBasicConsumer(_channel);
             eventingBasicConsumer.Received += EventReceiver;
             channel.BasicConsume(_queue, true, eventingBasicConsumer);
+            StartTimer();
 
         }
        
         public void EventReceiver(object ch, BasicDeliverEventArgs ea)
         {
+            _statisticData.CountOfRequests++;
             _logger.Info("rabbitmq catch event");
             
             var response = string.Empty;
@@ -54,11 +58,14 @@ namespace CMS.Inf.RabbitMq
                 
                GetResult(message);
                 _rabbitMqPublisher.Send("", props.ReplyTo, _replyProps, "created");
-
+                
+                _statisticData.CountOfSuccess++;
             }
             catch (Exception e)
             {
+                _rabbitMqPublisher.Send("", props.ReplyTo, _replyProps, "trouble");
                 _logger.Error(e.Message);
+                _statisticData.CountOfErrors++;
             }
         }
 
@@ -75,6 +82,7 @@ namespace CMS.Inf.RabbitMq
             catch (Exception ex)
             {
                 _logger.Error(ex.Message);
+                throw;
             }
         }
         public object WhatIsClass(string methodName, JObject data)
@@ -106,6 +114,18 @@ namespace CMS.Inf.RabbitMq
                 Console.WriteLine(VARIABLE);
             }
             method.Invoke(_usercase, new object[] { dto });
+        }
+
+        public void StartTimer()
+        {
+            _aTimer = new System.Timers.Timer(2000);
+            _aTimer.Elapsed += OnTimedEvent;
+            _aTimer.AutoReset = true;
+            _aTimer.Enabled = true;
+        }
+        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            Console.WriteLine("Count of request: {0}, Count of success requset: {1}, Count of error request{2}", _statisticData.CountOfRequests, _statisticData.CountOfSuccess, _statisticData.CountOfErrors);
         }
     }
 }

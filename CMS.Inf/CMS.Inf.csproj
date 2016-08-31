@@ -116,6 +116,7 @@
     <Compile Include="RabbitMq\RabbitMqReceiver.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\SectionRepository.cs" />
+    <Compile Include="StatisticData.cs" />
     <Compile Include="UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
