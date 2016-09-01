@@ -23,6 +23,7 @@ namespace CMS.Inf.RabbitMq
         IBasicProperties _replyProps;
         Timer _aTimer;
         StatisticData _statisticData;
+        RabbitMqPablishStatistic _rabbitMqPablishStatistic;
 
         public RabbitBuild(ILogger logger,IModel channel, string queue, object usercase, StatisticData statisticData)
         {
@@ -38,6 +39,7 @@ namespace CMS.Inf.RabbitMq
             eventingBasicConsumer.Received += EventReceiver;
             channel.BasicConsume(_queue, true, eventingBasicConsumer);
             StartTimer();
+            _rabbitMqPablishStatistic = new RabbitMqPablishStatistic();
 
         }
        
@@ -125,7 +127,9 @@ namespace CMS.Inf.RabbitMq
         }
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("Count of request: {0}, Count of success requset: {1}, Count of error request{2}", _statisticData.CountOfRequests, _statisticData.CountOfSuccess, _statisticData.CountOfErrors);
+            _rabbitMqPablishStatistic.Send("","hello",
+                $"Count of request: {_statisticData.CountOfRequests}, Count of success requset: {_statisticData.CountOfSuccess}, Count of error request{_statisticData.CountOfErrors}");
+           // Console.WriteLine("Count of request: {0}, Count of success requset: {1}, Count of error request{2}", _statisticData.CountOfRequests, _statisticData.CountOfSuccess, _statisticData.CountOfErrors);
         }
     }
 }

@@ -113,7 +113,7 @@
     <Compile Include="RabbitMq\RabbitBuild.cs" />
     <Compile Include="RabbitMq\RabbitConnector.cs" />
     <Compile Include="RabbitMq\RabbitMqPublisher.cs" />
-    <Compile Include="RabbitMq\RabbitMqReceiver.cs" />
+    <Compile Include="RabbitMq\RabbitMqPablishStatistic.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\SectionRepository.cs" />
     <Compile Include="StatisticData.cs" />
