@@ -26,7 +26,6 @@ namespace CMS.App
             _connector = new RabbitConnector(_logger).Connect("localhost");
             var statistic = new StatisticData();
             var usecase = new UseCase(_logger);
-            
             var rpc = new RabbitBuild(_logger, _connector, "rec_con", usecase, statistic);
         }
     }
