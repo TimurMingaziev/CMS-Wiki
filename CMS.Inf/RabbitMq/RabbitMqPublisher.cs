@@ -6,7 +6,7 @@ namespace CMS.Inf.RabbitMq
 {
     public class RabbitMqPublisher { 
 
-        private IModel _channel;
+        private readonly IModel _channel;
 
         public RabbitMqPublisher(IModel channel)
         {

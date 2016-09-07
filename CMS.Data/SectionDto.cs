@@ -14,7 +14,7 @@ namespace CMS.Data
         public string NameSection { get; set; }
         public string DecriptionSection { get; set; }
         public string OwnerSection { get; set; }
-        public virtual ICollection<PageDto> PagesOfSection { get; set; }
+        public List<PageDto> PagesOfSection { get; set; }
 
     }
 }

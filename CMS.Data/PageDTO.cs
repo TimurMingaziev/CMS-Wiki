@@ -20,8 +20,8 @@ namespace CMS.Data
         public  int SectionId { get; set; }
         
   //      public virtual ICollection<PageDto> PagesThis { get; set; }
-        public virtual ICollection<CommentDto> Comments { get; set; }
-        public virtual ICollection<MarkDto> Marks { get; set; }
+        public  List<CommentDto> Comments { get; set; }
+        public  List<MarkDto> Marks { get; set; }
 
     }
 }

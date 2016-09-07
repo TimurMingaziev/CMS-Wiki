@@ -9,11 +9,11 @@ using NLog;
 namespace CMS.Inf.Repository
 {
 
-    public class PageRepository  : Repository<PageDto>
+    public class PageRepository
     {
-        UserContext _userContext;
-        IConfigurationProvider _config;
-        ILogger _logger;
+        readonly UserContext _userContext;
+        readonly IConfigurationProvider _config;
+        readonly ILogger _logger;
         public PageRepository(ILogger logger)
         {
             _logger = logger;

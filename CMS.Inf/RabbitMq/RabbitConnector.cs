@@ -7,9 +7,8 @@ namespace CMS.Inf.RabbitMq
     public class RabbitConnector
     {
 
-        private string _host { get; set; }
-        private IModel _channel { get; set;}
-        private ILogger _logger { get; set; }
+        private IModel Channel { get; set;}
+        private readonly ILogger _logger;
         public RabbitConnector(ILogger logger)
         {
             _logger = logger;
@@ -19,15 +18,14 @@ namespace CMS.Inf.RabbitMq
         public IModel Connect(string host)
         {
             _logger.Info("Connecting to rabbit server");
-            _host = host;
             try
             {
                 var factory = new ConnectionFactory
                 {
-                    HostName = _host
+                    HostName = host
                 };
                 var connection = factory.CreateConnection();
-                _channel = connection.CreateModel();
+                Channel = connection.CreateModel();
             }
             catch (Exception)
             {
@@ -37,12 +35,12 @@ namespace CMS.Inf.RabbitMq
 
             _logger.Info("Connected to rabbit");
 
-            return _channel;
+            return Channel;
         }
 
         public void Disconnect()
         {
-            _channel.Close();
+            Channel.Close();
             _logger.Info("Disconnected (rabbit)");
         }
         

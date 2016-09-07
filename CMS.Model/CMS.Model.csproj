@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Comment.cs" />
-    <Compile Include="IUseCase.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Domain\Mark.cs" />
     <Compile Include="Domain\Page.cs" />

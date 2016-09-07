@@ -6,7 +6,7 @@ namespace CMS.Inf.RabbitMq
 {
     class RabbitMqPablishStatistic
     {
-        private IModel _channel;
+        private readonly IModel _channel;
 
         public RabbitMqPablishStatistic()
         {

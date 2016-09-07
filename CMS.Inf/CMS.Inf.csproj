@@ -76,7 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mapper.cs" />
     <Compile Include="Migrations\201608281426151_NewPageDto.cs" />
     <Compile Include="Migrations\201608281426151_NewPageDto.Designer.cs">
       <DependentUpon>201608281426151_NewPageDto.cs</DependentUpon>
@@ -105,6 +104,10 @@
     <Compile Include="Migrations\201608292140158_NewMarkDto.Designer.cs">
       <DependentUpon>201608292140158_NewMarkDto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609071213315_ChangeReferences.cs" />
+    <Compile Include="Migrations\201609071213315_ChangeReferences.Designer.cs">
+      <DependentUpon>201609071213315_ChangeReferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\MarkRepository.cs" />
@@ -114,7 +117,6 @@
     <Compile Include="RabbitMq\RabbitConnector.cs" />
     <Compile Include="RabbitMq\RabbitMqPublisher.cs" />
     <Compile Include="RabbitMq\RabbitMqPablishStatistic.cs" />
-    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\SectionRepository.cs" />
     <Compile Include="StatisticData.cs" />
     <Compile Include="UserContext.cs" />
@@ -143,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608292140158_NewMarkDto.resx">
       <DependentUpon>201608292140158_NewMarkDto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609071213315_ChangeReferences.resx">
+      <DependentUpon>201609071213315_ChangeReferences.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -14,30 +14,28 @@ namespace CMS.Inf.RabbitMq
 {
     public class RabbitBuild
     {
-        private ILogger _logger;
-        private IModel _channel;
-      //  private EventingBasicConsumer _eventingBasicConsumer;
-        private string _queue;
-        object _usercase;
-        RabbitMqPublisher _rabbitMqPublisher;
-        IBasicProperties _replyProps;
-        Timer _aTimer;
-        StatisticData _statisticData;
-        RabbitMqPablishStatistic _rabbitMqPablishStatistic;
+        private readonly ILogger _logger;
+        private readonly IModel _channel;
+        private readonly object _service;
+        private readonly RabbitMqPublisher _rabbitMqPublisher;
+        private IBasicProperties _replyProps;
+        private Timer _aTimer;
+        private readonly StatisticData _statisticData;
+        private readonly RabbitMqPablishStatistic _rabbitMqPablishStatistic;
 
-        public RabbitBuild(ILogger logger,IModel channel, string queue, object usercase, StatisticData statisticData)
+        public RabbitBuild(ILogger logger,IModel channel, string queue, object service, StatisticData statisticData)
         {
             _statisticData = statisticData;
-            _usercase = usercase;
+            _service = service;
             _logger = logger;
-            _queue = queue;
+            var queue1 = queue;
             _channel = channel;
-            _channel.QueueDeclare(_queue, false, false, false, null);
+            _channel.QueueDeclare(queue1, false, false, false, null);
             _channel.BasicQos(0, 100, false);
             _rabbitMqPublisher = new RabbitMqPublisher(_channel);
             EventingBasicConsumer eventingBasicConsumer = new EventingBasicConsumer(_channel);
             eventingBasicConsumer.Received += EventReceiver;
-            channel.BasicConsume(_queue, true, eventingBasicConsumer);
+            channel.BasicConsume(queue1, true, eventingBasicConsumer);
             StartTimer();
             _rabbitMqPablishStatistic = new RabbitMqPablishStatistic();
 
@@ -108,14 +106,14 @@ namespace CMS.Inf.RabbitMq
         public void CallMethod(string methodName, object dto)
         {
             _logger.Info("Calling method");
-            var method = _usercase.GetType().GetMethod(methodName);
+            var method = _service.GetType().GetMethod(methodName);
             var methodParameters = method.GetParameters();
 
             foreach (var VARIABLE in methodParameters)
             {
                 Console.WriteLine(VARIABLE);
             }
-            method.Invoke(_usercase, new object[] { dto });
+            method.Invoke(_service, new object[] { dto });
         }
 
         public void StartTimer()

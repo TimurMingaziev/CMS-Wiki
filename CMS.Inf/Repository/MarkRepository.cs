@@ -10,11 +10,11 @@ using NLog;
 
 namespace CMS.Inf.Repository
 {
-    public class MarkRepository : Repository<MarkDto>
+    public class MarkRepository
     {
-        UserContext _userContext;
-        IConfigurationProvider _config;
-        ILogger _logger;
+        readonly UserContext _userContext;
+        readonly IConfigurationProvider _config;
+        readonly ILogger _logger;
         public MarkRepository(ILogger logger)
         {
             _logger = logger;

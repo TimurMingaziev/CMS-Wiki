@@ -7,7 +7,7 @@ namespace CMS.Model.Domain
     {
         public Page()
         {
-            PagesThis = new List<Page>();
+        //    PagesThis = new List<Page>();
             Comments = new List<Comment>();
             Marks = new List<Mark>();
         }
@@ -36,7 +36,7 @@ namespace CMS.Model.Domain
         public int? SectionId { get; set; }
         public Section Section { get; set; }
 
-        public virtual ICollection<Page> PagesThis { get; set; }
+      //  public virtual ICollection<Page> PagesThis { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Mark> Marks { get; set; }
 
